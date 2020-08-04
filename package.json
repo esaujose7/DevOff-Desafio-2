@@ -1,0 +1,26 @@
+{
+  "name": "DevOff-Desafio-2",
+  "version": "1.0.0",
+  "description": "![](https://static-cdn.jtvnw.net/jtv_user_pictures/fb425ddf-5e67-4c84-9210-8065809675f7-profile_banner-480.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esaujose7/DevOff-Desafio-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esaujose7/DevOff-Desafio-2/issues"
+  },
+  "homepage": "https://github.com/esaujose7/DevOff-Desafio-2#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
