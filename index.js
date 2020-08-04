@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/', (req, res) => {
-  res.json(req.body);
+  res.json({msg: 'Dev Off challenge 2: https://github.com/devoffarg/DevOff-Desafio-2'});
 })
 
 const validateBody = (req, res, next) => {
