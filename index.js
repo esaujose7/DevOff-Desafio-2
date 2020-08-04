@@ -7,7 +7,7 @@ const PORT = 8000;
 app.use(cors());
 app.use(express.json());
 
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
   res.json({msg: 'Dev Off challenge 2: https://github.com/devoffarg/DevOff-Desafio-2'});
 })
 
