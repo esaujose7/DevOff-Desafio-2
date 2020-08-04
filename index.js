@@ -20,9 +20,9 @@ const validateBody = (req, res, next) => {
   next();
 };
 
-const produceMatrix = (mensaje, vueltas) => {
-  const splittedMessage = mensaje.split('');
-  const matrix = Array(Math.ceil(mensaje.length / vueltas)).fill(Array(vueltas).fill(''));
+const produceMatrix = (text, rows, columns) => {
+  const splittedMessage = text.split('');
+  const matrix = Array(rows).fill(Array(columns).fill(''));
   let strCounter = 0; 
   return matrix.map(row => row.map(() => splittedMessage[strCounter++] || ' '));
 };
@@ -35,14 +35,14 @@ const transposeMatrix = (matrix) => {
 
 const getMatrixSize = matrix => [matrix.length, (matrix[0] || []).length];
 
-const iterateToString = matrix => matrix.reduce((acc, v) => acc.concat(v.reduce((acc, v) => acc.concat(v), '')), '').trim();
+const iterateMatrixToString = matrix => matrix.reduce((acc, v) => acc.concat(v.reduce((acc, v) => acc.concat(v), '')), '').trim();
 
-app.post('/encrypt', validateBody, (req, res) => {
-  res.status(200).json({ mensaje: iterateToString(transposeMatrix(produceMatrix(req.body.mensaje, req.body.vueltas))) });
+app.post('/encrypt', validateBody, ({ body: { mensaje: text, vueltas: columns } }, res) => {
+  res.status(200).json({ mensaje: iterateMatrixToString(transposeMatrix(produceMatrix(text, Math.ceil(text.length / columns), columns))) });
 });
 
-app.post('/decrypt', validateBody, (req, res) => {
-  res.status(200).json({ mensaje: iterateToString(transposeMatrix(produceMatrix(req.body.mensaje, req.body.vueltas))) })
+app.post('/decrypt', validateBody, ({ body: { mensaje: text, vueltas: rows } }, res) => {
+  res.status(200).json({ mensaje: iterateMatrixToString(transposeMatrix(produceMatrix(text, rows, Math.ceil(text.length / rows)))) });
 });
 
 app.listen(PORT, () => {
